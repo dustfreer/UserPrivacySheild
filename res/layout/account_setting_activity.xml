@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/tip" />
+
+    <TextView
+        android:id="@+id/select_packageName_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选取的包名是：" />
+
+    <TextView
+        android:id="@+id/input_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请在下方输入该app的账号和密码" />
+
+    <EditText
+        android:id="@+id/account_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/pass_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/encrypt_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="encryptAccount"
+        android:text="加密" />
+
+    <Button
+        android:id="@+id/decrypt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="decryptAccount"
+        android:text="解密" />
+
+    <Button
+        android:id="@+id/accountInfo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="账号信息"
+        android:onClick="getAccountInfo" />
+
+   
+
+</LinearLayout>

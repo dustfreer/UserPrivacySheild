@@ -1,0 +1,441 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.security.ass"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="21" />
+    
+    
+    <!-- privacy权限 -->
+    <permission-tree
+        android:name="biz.bokhorst.xprivacy"
+        android:description="@string/app_name"
+        android:icon="@drawable/ic_launcher" />
+
+    <permission
+        android:name="biz.bokhorst.xprivacy.MANAGE_PACKAGES"
+        android:description="@string/permission_manage"
+        android:label="@string/permission_manage"
+        android:protectionLevel="dangerous" />
+    <permission
+        android:name="biz.bokhorst.xprivacy.MANAGE_XPRIVACY"
+        android:description="@string/permission_restrictions"
+        android:label="@string/permission_restrictions"
+        android:protectionLevel="dangerous" />
+    
+    
+    
+    
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="biz.bokhorst.xprivacy.MANAGE_PACKAGES" />
+    <uses-permission android:name="biz.bokhorst.xprivacy.MANAGE_XPRIVACY" />
+    <uses-permission android:name="biz.bokhorst.xprivacy.pro.CHECK" />
+
+    
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+    
+    
+    <application
+        android:name="com.security.ass.staticanalyse.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        
+        <!-- Xposed -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="54" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/app_description" />
+
+        <!-- Samsung multi window support -->
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
+            android:resource="@dimen/app_defaultsize_w" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H"
+            android:resource="@dimen/app_defaultsize_h" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W"
+            android:resource="@dimen/app_minimumsize_w" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
+            android:resource="@dimen/app_minimumsize_h" />
+
+        <!-- Cydia substrate -->
+        <meta-data
+            android:name="com.saurik.substrate.main"
+            android:value=".XPrivacy" />
+        
+
+        <!-- 主界面部分 -->
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.LoginActivity"
+            android:label="登陆" >
+        </activity>
+        <activity
+            android:name=".ui.RegisterActivity"
+            android:label="注册" >
+        </activity>
+        <activity
+            android:name=".ui.IndexActivity"
+            android:label="首页" >
+        </activity>
+
+        <!-- 隐私登录 -->
+
+        <activity
+            android:name=".privacylogin.AccountSettingActivity"
+            android:label="账号设置" >
+        </activity>
+        <activity
+            android:name=".privacylogin.SelectPrivacyAccount"
+            android:label="账号选取" >
+        </activity>
+
+        <receiver android:name=".privacylogin.AccountReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.receiver.account" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".privacylogin.PasswordReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.receiver.password" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 输入法 -->
+        <activity
+            android:name=".pinyinime.SettingsActivity"
+            android:label="@string/ime_settings_activity_name" >
+        </activity>
+
+        <service
+            android:name=".pinyinime.PinyinIME"
+            android:label="@string/ime_name"
+            android:permission="android.permission.BIND_INPUT_METHOD" >
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/method" />
+        </service>
+        <service android:name=".pinyinime.PinyinDecoderService" >
+        </service>
+
+        <receiver android:name=".pinyinime.MyReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.idatachina.RFID.BARCODE.SCANINFO" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".pinyinime.QRReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.QRCode" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 广告拦截 -->
+
+        <activity
+            android:name=".adintercept.AdInterceptActivity"
+            android:label="广告拦截" >
+        </activity>
+
+        <!-- 日志记录 -->
+
+        <activity
+            android:name=".logrecord.LogRecordActivity"
+            android:label="日志记录" >
+        </activity>
+
+        <!-- 手机防盗 -->
+
+        <activity
+            android:name=".phonelost.PhoneLostActivity"
+            android:label="手机防盗" >
+        </activity>
+        
+        <activity
+            android:name=".phonelost.LostProtectedActivity"
+            android:label="手机防盗" >
+        </activity>
+        <activity android:name=".phonelost.Setup1Activity" >
+        </activity>
+        <activity android:name=".phonelost.Setup2Activity" >
+        </activity>
+        <activity android:name=".phonelost.Setup3Activity" >
+        </activity>
+        <activity android:name=".phonelost.Setup4Activity" >
+        </activity>
+        <activity android:name=".phonelost.SelectContactActivity" >
+        </activity>
+
+        <service android:name=".phonelost.ShowCallLocationService" >
+        </service>
+        <service android:name=".phonelost.CallFirewallService" >
+        </service>
+        <service android:name=".phonelost.WatchDogService" >
+        </service>
+        <service android:name=".phonelost.WatchDogService1" >
+        </service>
+
+        <receiver android:name=".phonelost.OutCallReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".phonelost.BootCompleteReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".phonelost.SmsReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".phonelost.MyAdmin" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/my_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 隐私设置 -->
+
+        <activity
+            android:name=".privacy.PrivacySettingActivity"
+            android:label="隐私设置 " >
+        </activity>
+
+        
+        
+        <activity
+            android:name=".privacy.ActivityMain"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern=".*XPrivacy_license\\.txt" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".privacy.ActivityApp"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ActivityMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="biz.bokhorst.xprivacy.ActivityMain" />
+
+            <intent-filter>
+                <action android:name="biz.bokhorst.xprivacy.action.APPLICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+          <activity
+            android:name=".privacy.ActivityShare"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName=".ActivityMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="biz.bokhorst.xprivacy.ActivityMain" />
+
+            <intent-filter>
+                <action android:name="biz.bokhorst.xprivacy.action.IMPORT" />
+                <action android:name="biz.bokhorst.xprivacy.action.EXPORT" />
+                <action android:name="biz.bokhorst.xprivacy.action.FETCH" />
+                <action android:name="biz.bokhorst.xprivacy.action.SUBMIT" />
+                <action android:name="biz.bokhorst.xprivacy.action.TOGGLE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".privacy.ActivitySettings"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ActivityMain"
+            android:windowSoftInputMode="stateHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="biz.bokhorst.xprivacy.ActivityMain" />
+
+            <intent-filter>
+                <action android:name="biz.bokhorst.xprivacy.action.SETTINGS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".privacy.ActivityUsage"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName=".ActivityMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="biz.bokhorst.xprivacy.ActivityMain" />
+
+            <intent-filter>
+                <action android:name="biz.bokhorst.xprivacy.action.USAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".privacy.PackageChange" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".privacy.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".privacy.DeviceAdministratorReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.ACTION_DEVICE_ADMIN_DISABLE_REQUESTED" />
+                <action android:name="android.app.action.ACTION_DEVICE_ADMIN_DISABLED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".privacy.UpdateService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="biz.bokhorst.xprivacy.MANAGE_XPRIVACY"
+            android:process=":update" >
+            <intent-filter>
+                <action android:name="biz.bokhorst.xprivacy.action.FLUSH" />
+                <action android:name="biz.bokhorst.xprivacy.action.UPDATE" />
+            </intent-filter>
+        </service>
+        
+        
+        
+        
+        
+        
+        <!-- 静态检测部分 -->
+        <activity
+            android:name=".staticanalyse.StaticAnalyseActivity"
+            android:label="静态检测" >
+        </activity>
+
+        <receiver android:name=".staticanalyse.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".staticanalyse.bReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".staticanalyse.PermissionQueryService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.analysis.QueryPermission" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".staticanalyse.Mservice"
+            android:exported="true" >
+        </service>
+
+        <!-- 关于 -->
+        <activity
+            android:name=".ui.AboutViewActivity"
+            android:label="关于" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <color name="label_color">#ffffffff</color>
+    <color name="label_color_hl0">#ffffffff</color>
+    <color name="balloon_color">#ff000000</color>
+    <color name="candidate_color">#ff000000</color>
+    <color name="active_candidate_color">#ff000000</color>
+    <color name="recommended_candidate_color">#ffe35900</color>
+    <color name="footnote_color">#ff343233</color>
+    <color name="composing_color">#ff000000</color>
+    <color name="composing_color_hl">#ffffffff</color>
+    <color name="composing_color_idle">#ff777777</color>
+    
+    <color name="color_primary1_light">#80cbc4</color>
+    <color name="color_primary1_dark">#009688</color>
+    <color name="color_primary2_light">#26a69a</color>
+    <color name="color_primary2_dark">#00796b</color>
+    <color name="color_accent_light">#ff6e40</color>
+    <color name="color_accent_dark">#ff6e40</color>
+    <color name="color_dangerous_light">#3CF83A3A</color>
+    <color name="color_dangerous_dark">#50F83A3A</color>
+    <color name="color_dangerous_dialog">#801D1D</color>
+    <color name="color_dangerous_off_light">#0CF83A3A</color>
+    <color name="color_dangerous_off_dark">#20F83A3A</color>
+    <color name="color_dangerous_user_light">#3CF8743A</color>
+    <color name="color_dangerous_user_dark">#50F8743A</color>
+    <color name="color_state_attention_light">#FFC800</color>
+    <color name="color_state_attention_dark">#FF8C00</color>
+    <color name="color_state_restricted_light">#C8C8C8</color>
+    <color name="color_state_restricted_dark">#A9A9A9</color>
+    <color name="color_state_shared_light">#00DC00</color>
+    <color name="color_state_shared_dark">#008000</color>
+</resources>
